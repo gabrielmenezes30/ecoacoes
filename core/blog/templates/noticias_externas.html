@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias Recentes sobre Sustentabilidade</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #c4170c;
+            border-bottom: 2px solid #c4170c;
+            padding-bottom: 10px;
+        }
+
+        .noticia {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .noticia a {
+            text-decoration: none;
+            color: #c4170c;
+            font-size: 1.2em;
+        }
+
+        .noticia a:hover {
+            text-decoration: underline;
+        }
+
+        .noticia small {
+            color: #888;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .noticia p {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .noticia img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Notícias Recentes sobre Sustentabilidade</h2>
+
+        {% if noticias %}
+            {% for noticia in noticias %}
+                <div class="noticia">
+                    <a href="{{ noticia.link }}" target="_blank">{{ noticia.title }}</a>
+                    <small>{{ noticia.published }}</small>
+                    <div>
+                        {{ noticia.summary|safe }}  <!-- pode trocar por striptags se quiser sem HTML -->
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma notícia encontrada.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
