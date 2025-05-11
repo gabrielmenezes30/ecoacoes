@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoGame - Plataforma Sustentável</title>
+
+    {% load static %}
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-light">
+
+    <div class="d-flex" style="min-height: 100vh;">
+        <!-- Sidebar Esquerda -->
+        <div class="bg-white border-end p-3" style="width: 250px;">
+            <div class="mb-4 text-center">
+                <img src="" alt="EcoGame" width="120">
+            </div>
+            <nav class="nav flex-column gap-3">
+                <span class="text-dark"><i class="fas fa-home me-2"></i>Início</span>
+                <span class="text-dark"><i class="fas fa-search me-2"></i>Explorar</span>
+                <span class="text-dark"><i class="fas fa-trophy me-2"></i>Ranking</span>
+                <span class="text-dark"><i class="fas fa-users me-2"></i>Meus Grupos</span>
+                <span class="text-dark"><i class="fas fa-plus-circle me-2"></i>Nova Ação</span>
+            </nav>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="flex-grow-1 p-4">
+            {% block content %}
+            <!-- Conteúdo da página -->
+            {% endblock %}
+        </div>
+
+        <!-- Sidebar Direita -->
+        <div class=" p-3" style="width: 300px;">
+            <!-- Este espaço pode ser preenchido com conteúdo específico no template extendido -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS Customizado -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

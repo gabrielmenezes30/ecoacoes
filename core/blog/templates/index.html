@@ -1,1 +1,73 @@
-olá
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="feed-container">
+    <div class="d-flex flex-column gap-4">
+        <!-- Card de Postagem -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'images/user-avatar.png' %}" class="rounded-circle me-2" width="32" height="32">
+                    <div>
+                        <h6 class="mb-0">EcoTeens Campinas</h6>
+                        <small class="text-muted">2 horas atrás</small>
+                    </div>
+                </div>
+            </div>
+            <img src="{% static 'images/post-image.png' %}" class="card-img-top" alt="Ação sustentável">
+            <div class="card-body">
+                <div class="d-flex gap-3 mb-3">
+                    <i class="far fa-heart fs-5 text-dark"></i>
+                    <i class="far fa-comment fs-5 text-dark"></i>
+                    <i class="far fa-share-square fs-5 text-dark"></i>
+                </div>
+                <p class="card-text">Reciclamos 150kg de plástico nesta semana! ♻️ #DesafioReciclagem</p>
+                <small class="text-muted">+15 pontos para o grupo | 42 comentários</small>
+            </div>
+        </div>
+        
+        <!-- Mais postagens podem ser adicionadas aqui -->
+    </div>
+</div>
+
+<!-- Sidebar Direita -->
+<div class="position-fixed top-0 end-0 h-100  p-3" style="width: 300px; margin-top: 0;">
+    <div class="pt-4">
+        <div class="d-flex align-items-center mb-4">
+            <img src="{% static 'images/user-avatar.png' %}" class="rounded-circle me-2" width="56" height="56">
+            <div>
+                <h6 class="mb-0">Seu Nome</h6>
+                <small class="text-muted">@seuusuario</small>
+            </div>
+        </div>
+
+        <h6 class="text-muted mb-3">Grupos Sugeridos</h6>
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'images/group-avatar.png' %}" class="rounded-circle me-2" width="32" height="32">
+                    <div>
+                        <h6 class="mb-0">Jovens Verdes</h6>
+                        <small class="text-muted">Petrolina - PE</small>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline-success">Participar</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h6 class="text-muted mb-3">Desafios Ativos</h6>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h6>Semana do Reaproveitamento ♻️</h6>
+                    <small class="text-muted">+50 pontos por ação</small>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar" role="progressbar" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
