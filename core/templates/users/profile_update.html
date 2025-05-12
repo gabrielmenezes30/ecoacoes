@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <h2 class="mb-4">Atualize seu perfil</h2>
+    
+    <div class="d-flex align-items-start gap-4">
+        <!-- Área do avatar -->
+        <div class="d-flex flex-column align-items-center" style="width: 200px;">
+            <!-- Foto atual -->
+            {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" 
+                    id="avatar-preview" 
+                    class="rounded-circle mb-2" 
+                    style="width: 150px; height: 150px; object-fit: cover;" 
+                    alt="Avatar">
+            {% else %}
+                <div id="avatar-preview" class="rounded-circle bg-light d-flex align-items-center justify-content-center mb-2" 
+                    style="width: 150px; height: 150px;">
+                    <i class="bi bi-person-fill" style="font-size: 3rem; color: #6c757d;"></i>
+                </div>
+            {% endif %}
+                        
+            <!-- Botão para selecionar nova foto -->
+            <label for="id_avatar" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-arrow-repeat"></i> Trocar
+            </label>
+            {{ form.avatar }}
+        </div>
+        
+        <!-- Formulário -->
+        <div class="flex-grow-1">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="avatar-clear" id="avatar-clear_id">
+                
+                <div class="mb-3">
+                    {{ form.bio }}
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    Salvar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Pré-visualização da imagem
+    document.getElementById('id_avatar').addEventListener('change', function(event) {
+        const preview = document.getElementById('avatar-preview');
+        const file = event.target.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                if (preview.tagName === 'IMG') {
+                    preview.src = e.target.result;
+                } else {
+                    const newPreview = document.createElement('img');
+                    newPreview.id = 'avatar-preview';
+                    newPreview.src = e.target.result;
+                    newPreview.className = 'rounded-circle mb-2';
+                    newPreview.style.width = '150px';
+                    newPreview.style.height = '150px';
+                    newPreview.style.objectFit = 'cover';
+                    preview.parentNode.replaceChild(newPreview, preview);
+                }
+            }
+            
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+<style>
+    #id_avatar {
+        display: none;
+    }
+    
+    #id_bio {
+        width: 100%;
+        min-height: 150px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+</style>
+{% endblock %}
