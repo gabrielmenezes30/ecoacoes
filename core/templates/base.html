@@ -26,10 +26,18 @@
             </div>
             <nav class="nav flex-column gap-3">
                 <span class="text-dark"><i class="fas fa-home me-2"></i>Início</span>
-                <span class="text-dark"><i class="fas fa-search me-2"></i>Explorar</span>
+                <a href="{% url 'profile_update' %}">
+                <span class="text-dark"><i class="fas fa-search me-2"></i>Perfil</span>
+                </a>
                 <span class="text-dark"><i class="fas fa-trophy me-2"></i>Ranking</span>
                 <span class="text-dark"><i class="fas fa-users me-2"></i>Meus Grupos</span>
                 <span class="text-dark"><i class="fas fa-plus-circle me-2"></i>Nova Ação</span>
+                <form action="{% url 'logout' %}" method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                        <i class="fas fa-sign-out-alt me-2"></i>Sair
+                    </button>
+                </form>
             </nav>
         </div>
 

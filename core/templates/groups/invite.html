@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Convidar para {{ group.name }}</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Link de Convite</h5>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="inviteUrl" value="{{ invite_url }}" readonly>
+            <button class="btn btn-outline-secondary" type="button" onclick="copyInviteLink()">Copiar</button>
+        </div>
+        <p class="text-muted">Compartilhe este link para convidar pessoas para o grupo.</p>
+    </div>
+</div>
+
+<script>
+function copyInviteLink() {
+    const copyText = document.getElementById("inviteUrl");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Link copiado!");
+}
+</script>
+{% endblock %}
